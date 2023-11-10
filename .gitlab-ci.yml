@@ -1,0 +1,15 @@
+image: python:3.10
+
+stages:
+  - test
+
+test:
+  stage: test
+  before_script:
+    - pip install poetry
+    - poetry install
+    # This workaround will be made obsolete by poetry 1.2.0
+    # https://github.com/python-poetry/poetry/issues/732
+    - poetry run pip install --upgrade pip
+  script:
+    - make test
